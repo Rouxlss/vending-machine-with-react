@@ -26,14 +26,3 @@ export const Products = () => {
         </div>
     )
 }
-
-
-echo "# vending-machine-with-react" >> README.md
-git init
-git add README.md
-git add .
-git commit -m "getting data from api and styled components done"
-git branch -M master
-git branch -M dev
-git remote add origin https://github.com/Rouxlss/vending-machine-with-react.git
-git push -u origin dev
