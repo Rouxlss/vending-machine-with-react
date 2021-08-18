@@ -15,7 +15,6 @@ main {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-    overflow-y: scroll;
 }
 
 .v-machine {
@@ -67,16 +66,16 @@ main {
 }
 
 .v-machine .shelf .item {
-    width: 120px;
+    width: 90px;
     /* background: rgb(223, 58, 58); */
-    height:80px;
+    height:100px;
     justify-content: space-between;
     flex-direction: column;
     align-items: center;}
 
 .v-machine .item .name {
     text-align: center;
-    /* background: rgb(212, 212, 212); */
+    background: rgb(212, 212, 212);
     width: 90%;
     height: 20%;
     margin: auto;
@@ -233,40 +232,4 @@ background: rgb(130, 201, 25);
 }
 .controls-use .buttons .btn:focus {
     border: 5px solid rgb(82, 82, 82);
-}
-
-/* loader */
-
-.loader {
-  position: absolute;
-  margin: auto;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  width: 300px;
-  height: 300px;
-}
-
-.loader img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.error {
-  position: absolute;
-  margin: auto;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  padding: 20px;
-  font-size: 25px;
-  color: rgb(255, 220, 125);
-  background: rgb(143, 5, 5);
-  width: 300px;
-  text-align: center;
-  height: 70px;
-  font-family: 'Inconsolata', monospace;
 }

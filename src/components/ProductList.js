@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-export const ProductList = ({ products }) => {
+export const ProductList = ({ products, IsPending=null }) => {
 
     const [itemList, setitemList] = useState([]);
     const [additem, setadditem] = useState(false);
@@ -56,7 +56,7 @@ export const ProductList = ({ products }) => {
             if (item.preparation_time <= 0) {
                 setcompleted([item])
                 var index = newItemList.indexOf(item);
-                if (index > -1) { 
+                if (index > -1) {
                     newItemList.splice(index, 1);
                     console.log('REMOVED!')
                 }
@@ -81,50 +81,115 @@ export const ProductList = ({ products }) => {
     }, [additem])
 
     return (
-        <>
-            <div className="v_machine">
-                <div className="products">
-                    {
-                        products.map((product) => (
-                            <div key={product.id} className="product">
-                                <div className="img">
-                                    <img src={product.thumbnail} alt={product.name} />
+        <main>
+
+            <div className="v-machine">
+                <div className="v-machine__inside">
+                    <div className="shelf">
+                        {
+                            products.map((product, index) => (
+                                <div key={product.id} className="item">
+                                    <div className="img">
+                                        <img
+                                            src={product.thumbnail} alt={product.name} />
+                                    </div>
+                                    <div className="name">
+                                        {index + 1 + "-" + product.name}
+                                    </div>
                                 </div>
-                                <div className="product__name">
-                                    {product.name}
-                                </div>
-                                <div className="select">
-                                    <button value={product} onClick={() => handleAddProduct(product)} className="btn">Seleccionar</button>
-                                </div>
-                            </div>
-                        ))
-                    }
+                            ))
+                        }
+                    </div>
+                    <div className="output">
+                        <div className="show-item">
+                            {
+                                completed.map((product) => (
+                                    <div className="img">
+                                        <img src={product.thumbnail} alt={product.name} />
+                                    </div>
+                                ))
+                            }
+
+                        </div>
+                    </div>
                 </div>
-                <div className="products_queue">
-                    <div className="screen">
+                <div className="controls">
+                    <div className="queue">
+                        <ul>
+                            {
+                                itemList.map((item) => (
+                                    <li key={item.id}>{item.name}</li>
+                                ))
+                            }
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="controls-use">
+                <div class="queue">
+                    <ul>
                         {
                             itemList.map((item) => (
                                 <li key={item.id}>{item.name} - <span className="time">{item.preparation_time}</span>s</li>
                             ))
                         }
-                    </div>
-                    <div className="completed">
-                        {
-                            completed.map((product, index) => (
-                                <div key={index + product.id} className="completed__product">
-                                    <div className="img">
-                                        <img src={product.thumbnail} alt={product.name} />
-                                    </div>
-                                    <div className="product__name">
-                                        {product.name}
-                                    </div>
-                                </div>
-                            ))
-                        }
-                    </div>
+                    </ul>
+                </div>
+                <div class="buttons">
+                    {
+                        products.map((product, index) => (
+                            <button value={product} onClick={() => handleAddProduct(product)} className="btn">{index + 1}</button>
+                        ))
+                    }
                 </div>
             </div>
 
-        </>
+
+        </main>
+
+        /* <div className="v_machine">
+        <div className="products">
+            {
+                products.map((product) => (
+                    <div key={product.id} className="product">
+                        <div className="img">
+                            <img src={product.thumbnail} alt={product.name} />
+                        </div>
+                        <div className="product__name">
+                            {product.name}
+                        </div>
+                        <div className="select">
+                            <button value={product} onClick={() => handleAddProduct(product)} className="btn">Seleccionar</button>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+        <div className="products_queue">
+            <div className="screen">
+                {
+                    itemList.map((item) => (
+                        <li key={item.id}>{item.name} - <span className="time">{item.preparation_time}</span>s</li>
+                    ))
+                }
+            </div>
+            <div className="completed">
+                {
+                    completed.map((product, index) => (
+                        <div key={index + product.id} className="completed__product">
+                            <div className="img">
+                                <img src={product.thumbnail} alt={product.name} />
+                            </div>
+                            <div className="product__name">
+                                {product.name}
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+        </div> */
     )
 }
