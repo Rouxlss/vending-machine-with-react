@@ -5,9 +5,10 @@ export const Products = () => {
 
     const [products, setProducts] = useState(null);
     const [IsPending, setIsPending] = useState(true)
+    const [IsError, setIsError] = useState(null)
 
     useEffect(() => {
-        setTimeout(() => {
+        // setTimeout(() => {
             fetch('https://vending-machine-test.vercel.app/api/products')
             .then(res => {
                 return res.json()
@@ -15,12 +16,19 @@ export const Products = () => {
             .then((data)=>{
                 setProducts(data.data)
                 setIsPending(false);
+                setIsError(null);
             })
-        }, 2000);
+            .catch(err => {
+                setIsError("Failed to fetch data");
+                setIsPending(false);
+            })
+        // }, 2000);
     }, [])
+
 
     return (
         <div>
+            {IsError && <div className="error">{IsError}</div> }
             {IsPending && <div className="loader"><img src="./assets/loading.gif" alt="" /></div>}
             {products && <ProductList products={products}/>}
         </div>
